@@ -1,4 +1,4 @@
-﻿namespace Assignment_1_RPG
+﻿namespace RPG_Game
 {
     internal class Program
     {
@@ -66,37 +66,40 @@
 
 
     static Room SetUpMap()
-    //function for setting up the rooms
-    {
-        Room Entrance = new Room(
-            "The Castle Entrance",
-            "You are in a large room with a big staircase infront of you and a room to your right.");
+        //function for setting up the rooms
+        {
+            Room Entrance = new Room(
+                "The Castle Entrance",
+                "You are in a large room with a big staircase infront of you and a room to your right.");
 
-        Room StorageRoom = new Room(
-            "A Small Storage Room",
-            "You are in a cramped storage cabinet, the air is thick and dusty.");
+            Room StorageRoom = new Room(
+                "A Small Storage Room",
+                "You are in a cramped storage cabinet, the air is thick and dusty.");
 
-        Entrance.East = StorageRoom;
-        StorageRoom.West = Entrance
+            Entrance.East = StorageRoom;
+            StorageRoom.West = Entrance
 
         return Entrance;
+        }
+
+
+        static void DescribeRoom(Room room)
+        //function for room directions
+        {
+            Console.WriteLine();
+            Console.WriteLine(room.Title);
+
+            Console.WriteLine("".PadLeft(room.Title.Length), '-');
+            Console.WriteLine(room.Description);
+            Console.WriteLine("".PadLeft(room.Title.Length), '-');
+
+            Console.WriteLine("Exits: {0}{1}{2}{3}\n",
+                room.North == null ? "" : "North "
+    
+                room.East == null ? "" : "East "
+    
+                room.South == null ? "" : "South "
+    
+                room.West == null ? "" : "West ");
+        }
     }
-
-
-    static void DescribeRoom(Room room)
-    //function for room directions
-    {
-        Console.WriteLine();
-        Console.WriteLine(room.Title);
-
-        Console.WriteLine("".PadLeft(room.Title.Length), '-');
-        Console.WriteLine(room.Description);
-        Console.WriteLine("".PadLeft(room.Title.Length), '-');
-
-        Console.WriteLine("Exits: {0}{1}{2}{3}\n",
-            room.North == null ? "" : "North "
-            room.East == null ? "" : "East "
-            room.South == null ? "" : "South "
-            room.West == null ? "" : "West ");
-    }
-}
