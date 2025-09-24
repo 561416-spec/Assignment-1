@@ -7,4 +7,20 @@
             Console.WriteLine("Test");
         }
     }
+
+    class Room
+    {
+        public string Title;
+        public string Description;
+        public Room North;
+        public Room East;
+        public Room South;
+        public Room West;
+
+        public Room(string title, string description)
+        {
+            Title = title;
+            Description = description;
+        }
+    }
 }
