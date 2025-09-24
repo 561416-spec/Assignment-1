@@ -9,6 +9,7 @@
     }
 
     class Room
+    //class for room creation
     {
         public string Title;
         public string Description;
