@@ -1,6 +1,24 @@
 ﻿namespace RPG_Game
 {
-    internal class Program
+    class Room
+        // Room Defining
+    {
+        public string Title;
+        public string Description;
+        public Room North;
+        public Room East;
+        public Room South;
+        public Room West;
+
+        public Room(string title, string description)
+        {
+            Title = title;
+            Description = description;
+        }
+    }
+
+
+    class Program
     {
         static void Main(string[] args)
         {
@@ -44,47 +62,28 @@
                 }
             }
         }
-    }
 
-
-    class Room
-    //class for room creation
-    {
-        public string Title;
-        public string Description;
-        public Room North;
-        public Room East;
-        public Room South;
-        public Room West;
-
-        public Room(string title, string description)
+        static Room SetUpMap()
         {
-            Title = title;
-            Description = description;
-        }
-    }
-
-
-    static Room SetUpMap()
-        //function for setting up the rooms
-        {
-            Room Entrance = new Room(
-                "The Castle Entrance",
-                "You are in a large room with a big staircase infront of you and a room to your right.");
-
+            // Room Creation
             Room StorageRoom = new Room(
-                "A Small Storage Room",
-                "You are in a cramped storage cabinet, the air is thick and dusty.");
+               "A Storage Room",
+               "You are in a cramped storage cabinet, the air is thick and dusty.");
 
+            Room Entrance = new Room(
+               "The Castle Entrance",
+               "You are in a large room with a big staircase infront of you and a room to your right.");
+
+            // Conecting Rooms Together
+            StorageRoom.East = Entrance;
             Entrance.East = StorageRoom;
-            StorageRoom.West = Entrance
 
-        return Entrance;
+            // Sets Starting Room
+            return Entrance;
         }
-
 
         static void DescribeRoom(Room room)
-        //function for room directions
+        // Movement Between Rooms
         {
             Console.WriteLine();
             Console.WriteLine(room.Title);
@@ -94,12 +93,11 @@
             Console.WriteLine("".PadLeft(room.Title.Length), '-');
 
             Console.WriteLine("Exits: {0}{1}{2}{3}\n",
-                room.North == null ? "" : "North "
-    
-                room.East == null ? "" : "East "
-    
-                room.South == null ? "" : "South "
-    
-                room.West == null ? "" : "West ");
+               room.North == null ? "" : "North ",
+               room.East == null ? "" : "East ",
+               room.South == null ? "" : "South ",
+               room.West == null ? "" : "West");
         }
     }
+}
+
