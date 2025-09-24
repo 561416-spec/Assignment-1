@@ -1,7 +1,7 @@
 ﻿namespace RPG_Game
 {
     class Room
-        // Room Defining
+    // Room Defining
     {
         public string Title;
         public string Description;
@@ -17,11 +17,25 @@
         }
     }
 
+    class Player
+    // Used to create player data stores
+    {
+        public string username;
+    }
+
 
     class Program
     {
         static void Main(string[] args)
         {
+
+            Console.WriteLine("Input your username");
+            string username = Console.ReadLine();
+
+            Thread.Sleep(2000);
+
+            WelcomeScreenAnimation();
+
             Room currentRoom = SetUpMap();
             string userChoice = "";
 
@@ -63,6 +77,52 @@
             }
         }
 
+        static void WelcomeScreenAnimation()
+        {
+            Console.Clear();
+            Thread.Sleep(3000);
+            Console.WriteLine("                             ");
+            Console.WriteLine("                             ");
+            Console.WriteLine("                             ");
+            Console.WriteLine("                             ");
+            Console.WriteLine("                             ");
+            Console.WriteLine("                             ");
+            Console.WriteLine("                             ");
+            Console.WriteLine("                             ██╗       ██╗███████╗██╗      █████╗  █████╗ ███╗   ███╗███████╗");
+            Thread.Sleep(100);
+            Console.WriteLine("                             ██║  ██╗  ██║██╔════╝██║     ██╔══██╗██╔══██╗████╗ ████║██╔════╝");
+            Thread.Sleep(100);
+            Console.WriteLine("                             ╚██╗████╗██╔╝█████╗  ██║     ██║  ╚═╝██║  ██║██╔████╔██║█████╗  ");
+            Thread.Sleep(100);
+            Console.WriteLine("                              ████╔═████║ ██╔══╝  ██║     ██║  ██╗██║  ██║██║╚██╔╝██║██╔══╝  ");
+            Thread.Sleep(100);
+            Console.WriteLine("                              ╚██╔╝ ╚██╔╝ ███████╗███████╗╚█████╔╝╚█████╔╝██║ ╚═╝ ██║███████╗");
+            Thread.Sleep(100);
+            Console.WriteLine("                               ╚═╝   ╚═╝  ╚══════╝╚══════╝ ╚════╝  ╚════╝ ╚═╝     ╚═╝╚══════╝");
+
+            Thread.Sleep(500);
+            Console.WriteLine("                             ");
+            Console.WriteLine("                             ");
+            Console.WriteLine("                             ");
+            Console.WriteLine("                             ");
+            Console.WriteLine("                             ");
+            Console.WriteLine("                                                           " + username);
+            Console.WriteLine("                             ");
+            Thread.Sleep(100);
+            Console.WriteLine("                                                        -----------");
+            Console.WriteLine("                             ");
+            Thread.Sleep(200);
+            Console.WriteLine("                                                      ---------------");
+            Console.WriteLine("                             ");
+            Thread.Sleep(250);
+            Console.WriteLine("                                                    -------------------");
+            Console.WriteLine("                             ");
+            Console.WriteLine("                             ");
+            Thread.Sleep(3000);
+            Console.Clear();
+        }
+
+
         static Room SetUpMap()
         {
             // Room Creation
@@ -74,13 +134,20 @@
                "The Castle Entrance",
                "You are in a large room with a big staircase infront of you and a room to your right.");
 
+            Room Libary = new Room(
+                "A Enormous Libary",
+                "A large libary with towering bookshelfs reaching towards the roof");
+
             // Conecting Rooms Together
-            StorageRoom.East = Entrance;
+            StorageRoom.West = Entrance;
+            Libary.West = Entrance;
             Entrance.East = StorageRoom;
+            Entrance.West = Libary;
 
             // Sets Starting Room
             return Entrance;
         }
+
 
         static void DescribeRoom(Room room)
         // Movement Between Rooms
